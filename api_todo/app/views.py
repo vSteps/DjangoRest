@@ -1,9 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
 
-from app.models import Todo
-from app.serializers import Todo_Serializer
+from app.models import Todo, Cliente
+from app.serializers import Todo_Serializer, ClienteSerializer
 
 @api_view(['GET', 'POST'])
 def todo_list(request):
@@ -37,3 +37,7 @@ def todo_detail_change_and_delete(request, pk):
     elif request.method == 'DELETE':
         todo.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
+
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer 
