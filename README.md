@@ -7,5 +7,5 @@
 
 ## 🥅Coisas a se fazer:
 
- - [] Utilização do swagger
- - [] Estudo de django rest
+ - [ ] Utilização do swagger
+ - [ ] Estudo de django rest
