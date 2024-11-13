@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
     'app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'api_todo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todo',
+        'NAME': 'DjangoRest',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
