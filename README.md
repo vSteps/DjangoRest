@@ -4,8 +4,10 @@
 
 - [X] Api de cliente e lista de afazeres(todo)
 - [X] Integração com o banco de dados postgres
+- [X] Utilização do swagger
 
 ## 🥅Coisas a se fazer:
 
- - [ ] Utilização do swagger
  - [ ] Estudo de django rest
+ - [ ] Implementar outros modelos
+ - [ ] Usar o postman
