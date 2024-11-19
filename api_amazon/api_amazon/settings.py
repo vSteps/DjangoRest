@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'api_amazon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoRest',
+        'NAME': 'Amazon_BD',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

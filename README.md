@@ -10,5 +10,5 @@
 ## 🥅Coisas a se fazer:
 
  - [ ] Estudo de django rest
- - [ ] Implementar outros modelos
+ - [ ] Implementar outros modelos e seus devidos serializers
  - [ ] Usar o postman
