@@ -1,5 +1,5 @@
 """
-WSGI config for api_todo project.
+WSGI config for api_amazon project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_todo.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_amazon.settings')
 
 application = get_wsgi_application()

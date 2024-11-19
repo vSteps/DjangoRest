@@ -1,5 +1,5 @@
 """
-URL configuration for api_todo project.
+URL configuration for api_amazon project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -42,7 +42,7 @@ router.register(r'endereco', views.EnderecoViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api_cliente/', include(router.urls)),
+    path('api_amazon/', include(router.urls)),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
