@@ -5,12 +5,17 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from django.shortcuts import get_object_or_404 # type: ignore
 
 
-from rest_framework.decorators import api_view
-from rest_framework import  viewsets
+from rest_framework.decorators import api_view # type: ignore
+from rest_framework import  viewsets # type: ignore
+rom rest_framework.response import Response # type: ignore
+from rest_framework import status  # type: ignore
+from django.contrib.auth import authenticate, login # type: ignore
+from rest_framework.authentication import BasicAuthentication # type: ignore
+from rest_framework.permissions import IsAuthenticated # type: ignore
 
 
-from app.models import  Cliente, Endereco, Pedido, Item, Vendedor, Forma_Pagamento
-from app.serializers import  ClienteSerializer, EnderecoSerializer, PedidoSerializer, ItemSerializer, VendedorSerializer, Forma_PagamentoSerializer
+from app.models import  Cliente, Endereco, Pedido, Item, Vendedor, Forma_Pagamento # type: ignore
+from app.serializers import  ClienteSerializer, EnderecoSerializer, PedidoSerializer, ItemSerializer, VendedorSerializer, Forma_PagamentoSerializer # type: ignore
 
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
