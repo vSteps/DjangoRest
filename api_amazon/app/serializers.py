@@ -3,8 +3,8 @@ from rest_framework import serializers
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Cliente
-        fields = '__all__' 
+        model = User
+        fields = ['id', 'username', 'password', 'email'] 
 
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
