@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404 # type: ignore
 
 from rest_framework.decorators import api_view # type: ignore
 from rest_framework import  viewsets # type: ignore
-rom rest_framework.response import Response # type: ignore
+from rest_framework.response import Response # type: ignore
 from rest_framework import status  # type: ignore
 from django.contrib.auth import authenticate, login # type: ignore
 from rest_framework.authentication import BasicAuthentication # type: ignore

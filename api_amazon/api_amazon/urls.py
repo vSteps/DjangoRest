@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin # type: ignore
-from django.urls import path, re-path, include # type: ignore
+from django.urls import path, re_path, include # type: ignore
 from rest_framework.routers import DefaultRouter # type: ignore
 from app import views # type: ignore
 from rest_framework import permissions # type: ignore
@@ -49,9 +49,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api_amazon/', include(router.urls)),
 
-    re_path('login', views.MeuUsuarioViewSet.login),
-    re_path('signup', views.MeuUsuarioViewSet.signup),
-    re_path('test_token', views.MeuUsuarioViewSet.test_token),
+    re_path('login', views.ClienteViewSet.login),
+    re_path('signup', views.ClienteViewSet.signup),
+    re_path('test_token', views.ClienteViewSet.test_token),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
