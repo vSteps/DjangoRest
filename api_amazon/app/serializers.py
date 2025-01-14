@@ -1,6 +1,6 @@
-from app.models import Cliente, Endereco, Vendedor, Pedido, Item, Forma_Pagamento
-from rest_framework import serializers
-
+from app.models import Cliente, Endereco, Vendedor, Pedido, Item, Forma_Pagamento #type: ignore
+from rest_framework import serializers #type: ignore
+from django.contrib.auth.models import User #type: ignore
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
