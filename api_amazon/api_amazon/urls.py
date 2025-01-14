@@ -14,13 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from app import views
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+from django.contrib import admin # type: ignore
+from django.urls import path, re-path, include # type: ignore
+from rest_framework.routers import DefaultRouter # type: ignore
+from app import views # type: ignore
+from rest_framework import permissions # type: ignore
+from drf_yasg.views import get_schema_view # type: ignore
+from drf_yasg import openapi # type: ignore
+from rest_framework import permissions # type: ignore
 
 
 schema_view = get_schema_view(
@@ -47,6 +48,11 @@ router.register(r'forma_pagamento', views.Forma_PagamentoViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api_amazon/', include(router.urls)),
+
+    re_path('login', views.MeuUsuarioViewSet.login),
+    re_path('signup', views.MeuUsuarioViewSet.signup),
+    re_path('test_token', views.MeuUsuarioViewSet.test_token),
+
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
