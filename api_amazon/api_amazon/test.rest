@@ -1,0 +1,28 @@
+
+POST http://localhost:8000/api/signup
+Content-Type: application/json
+
+{
+    "username": "arzaelxz",
+    "password": "arzael1",
+    "email": "victorpaiva226@gmail.com",
+    "nome": "Victor",
+    "telefone": "84998984116",
+
+}
+
+###
+
+
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+    "username": "arzaelxz",
+    "password": "arzael1"
+}
+
+
+GET http://localhost:8000/test_token
+Content-Type: application/json
+Authorization: Token d13f275a6a8d2adc023398c557ac224acdce709f
