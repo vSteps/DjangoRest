@@ -1,13 +1,12 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.db import models #type: ignore
+from django.contrib.auth.models import AbstractUser, User #type: ignore
 
-class Cliente(AbstractUser):
+class Cliente(AbstractUser): 
     nome = models.CharField(max_length=100)
-    telefone = models.CharField(max_length=15)
-    data_cadastro = models.DateTimeField(auto_now_add=True)    
+    telefone = models.CharField(max_length=15)   
 
-    def __str__(self):
-        return self.nome
+   def __str__(self):
+        return self.username, self.email, self.first_name, self.last_name, self.nome, self.telefone, self.data_cadastro   
     
 class Endereco(models.Model):
     rua = models.CharField(max_length=100)
