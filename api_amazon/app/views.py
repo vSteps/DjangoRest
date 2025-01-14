@@ -28,12 +28,12 @@ class ClienteViewSet(viewsets.ModelViewSet):
             return Response({'message': 'Not Found!'}, status=status.HTTP_400_BAD_REQUEST)
         
         token, created = Token.objects.get_or_create(user=user)
-        serializer = MeuUsuarioSerializer(instance=user)
+        serializer = ClienteSerializer(instance=user)
         return Response({'token': token.key, 'user':serializer.data})
 
     @api_view(['POST'])
     def signup(request):
-        serializer = MeuUsuarioSerializer(data=request.data)
+        serializer = ClienteSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             user = User.objects.get(username=request.data['username'])
