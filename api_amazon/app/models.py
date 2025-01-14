@@ -1,8 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Cliente(models.Model):
+class Cliente(AbstractUser):
     nome = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=15)
     data_cadastro = models.DateTimeField(auto_now_add=True)    
 
