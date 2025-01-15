@@ -1,0 +1,3 @@
+GET http://localhost:8000/test_token 
+Content-Type: application/json 
+Authorization: Token 7c472700b07355d0bf54966cfd2b38b6328cb389

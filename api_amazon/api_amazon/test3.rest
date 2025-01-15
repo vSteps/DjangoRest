@@ -1,0 +1,11 @@
+POST http://localhost:8000/api/signup
+Content-Type: application/json
+
+{
+  "username": "vsteps", 
+  "password": "senha123@", 
+  "email": "vsteps@gmail.com", 
+  "nome": "Victor Steps", 
+  "telefone": "94998984116", 
+  "data_nascimento": "2005-05-19"
+}
