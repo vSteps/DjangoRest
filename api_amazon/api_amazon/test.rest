@@ -1,15 +1,14 @@
-
 POST http://localhost:8000/api/signup
 Content-Type: application/json
 
 {
-    "username": "arzaelxz",
-    "password": "arzael1",
-    "email": "victorpaiva226@gmail.com",
-    "nome": "Victor",
-    "telefone": "84998984116",
-
+    "username": "arzael",
+    "password": "arzael12",
+    "email": "victorpaiva227@gmail.com",
+    "nome": "Victor Passos",
+    "telefone": "84998984115"
 }
+
 
 ###
 
@@ -18,8 +17,8 @@ POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "username": "arzaelxz",
-    "password": "arzael1"
+    "username": "arzael",
+    "password": "arzael12"
 }
 
 
