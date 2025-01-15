@@ -2,41 +2,28 @@ from django.db import models #type: ignore
 from django.contrib.auth.models import AbstractUser, User #type: ignore
 from django.contrib.auth.models import AbstractUser, Group, Permission
 
+from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.db import models
+
 class Cliente(AbstractUser):
-    # Other fields for Cliente model
-    
-    groups = models.ManyToManyField(
-        Group,
-        related_name='cliente_groups',  # Add a related_name to avoid conflict
-        blank=True
-    )
-    
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='cliente_permissions',  # Add a related_name to avoid conflict
-        blank=True
-    )
-
-
-class Cliente(AbstractUser): 
     nome = models.CharField(max_length=100)
-    telefone = models.CharField(max_length=15)   
-
+    telefone = models.CharField(max_length=15)
+    
     groups = models.ManyToManyField(
         Group,
-        related_name='cliente_groups',  # Add a related_name to avoid conflict
+        related_name='cliente_groups',  
         blank=True
     )
-    
+  
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='cliente_permissions',  # Add a related_name to avoid conflict
+        related_name='cliente_permissions',  
         blank=True
     )
-
-    def __str__(self):
-        return self.username, self.email, self.first_name, self.last_name, self.nome, self.telefone, self.data_cadastro   
     
+    def __str__(self):
+        return f"{self.username} - {self.email} - {self.first_name} {self.last_name} - {self.nome} - {self.telefone}"
+
 class Endereco(models.Model):
     rua = models.CharField(max_length=100)
     bairro = models.CharField(max_length=100)
