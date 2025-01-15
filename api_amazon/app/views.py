@@ -13,12 +13,14 @@ from django.contrib.auth import authenticate, login # type: ignore
 from rest_framework.authentication import BasicAuthentication # type: ignore
 from rest_framework.permissions import IsAuthenticated # type: ignore
 
+from django.contrib.auth.models import User # type: ignore
+from rest_framework.authtoken.models import Token # type: ignore
 
 from app.models import  Cliente, Endereco, Pedido, Item, Vendedor, Forma_Pagamento # type: ignore
 from app.serializers import  ClienteSerializer, EnderecoSerializer, PedidoSerializer, ItemSerializer, VendedorSerializer, Forma_PagamentoSerializer # type: ignore
 
 class ClienteViewSet(viewsets.ModelViewSet):
-    queryset = Cliente.objects.all()
+    queryset = User.objects.all()
     serializer_class = ClienteSerializer 
 
     @api_view(['POST'])
