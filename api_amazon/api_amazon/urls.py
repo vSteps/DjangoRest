@@ -22,7 +22,7 @@ from rest_framework import permissions # type: ignore
 from drf_yasg.views import get_schema_view # type: ignore
 from drf_yasg import openapi # type: ignore
 from rest_framework import permissions # type: ignore
-from app.views import RegistroUsuarioView, LoginUsuarioView, LogoutUsuarioView
+from app.views import *
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -53,11 +53,6 @@ router.register(r'forma_pagamento', views.Forma_PagamentoViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api_amazon/', include(router.urls)),
-
-    # re_path('login', views.ClienteViewSet.login),
-    # re_path('signup', views.ClienteViewSet.signup),
-    # re_path('test_token', views.ClienteViewSet.test_token),
-
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
@@ -70,5 +65,10 @@ urlpatterns = [
     path('api/auth/login/', LoginUsuarioView.as_view(), name='login'),
     path('api/auth/logout/', LogoutUsuarioView.as_view(), name='logout'),
 
+    path('api/auth/registro/cliente/', ClienteRegistrationView.as_view(), name='registro-cliente'),
+    path('api/auth/login/cliente/', ClienteLoginView.as_view(), name='login-cliente'),
+
+    path('api/auth/registro/vendedor/', VendedorRegistrationView.as_view(), name='registro-vendedor'),
+    path('api/auth/login/vendedor/', VendedorLoginView.as_view(), name='login-vendedor'),
 ]
 

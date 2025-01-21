@@ -59,6 +59,81 @@ class LogoutUsuarioView(APIView):
 
         return Response({'detail': 'Usuário deslogado com sucesso.'})
 
+class ClienteRegistrationView(APIView):
+    def post(self, request):
+        serializer = ClienteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ClienteLoginView(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            token, created = Token.objects.get_or_create(user=usuario)
+            if created:
+                token.delete()  
+                token = Token.objects.create(user=usuario)
+
+            response_data = {
+                'token': token.key,
+                'username': usuario.username,
+                'perfil': user.perfil,
+            }
+
+            if usuario.perfil == 'cliente':
+                cliente = usuario.cliente 
+                if cliente is not None:
+                    cliente_data = ClienteSerializer(cliente).data
+                    response_data['data'] = cliente_data
+
+            return Response(response_data)
+        else:
+            return Response({'message': 'Usuário ou Senha Inválido'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class VendedorRegistrationView(APIView):
+    def post(self, request):
+        serializer = VendedorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VendedorLoginView(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        usuario = authenticate(request, username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            token, created = Token.objects.get_or_create(user=usuario)
+            if created:
+                token.delete() 
+                token = Token.objects.create(user=usuario)
+
+            response_data = {
+                'token': token.key,
+                'username': usuario.username,
+                'perfil': usuario.perfil,
+            }
+
+            if usuario.perfil == 'vendedor':
+                vendedor = usuario.vendedor  
+                if vendedor is not None:
+                    vendedor_data = VendedorSerializer(vendedor).data
+                    response_data['data'] = vendedor_data
+
+            return Response(response_data)
+        else:
+            return Response({'message': 'Usuário ou Senha Inválido'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class EnderecoViewSet(viewsets.ModelViewSet):
     queryset = Endereco.objects.all()

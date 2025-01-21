@@ -6,23 +6,37 @@ class Usuario(AbstractUser):
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=15)
     data_nascimento = models.DateField()
+
     PERFIL = (
         ('admin', 'Administrador'),
         ('vendedor', 'Vendedor'),
         ('cliente', 'Cliente'),
     )
-
     perfil = models.CharField(max_length=15, choices=PERFIL)
-    
     groups = models.ManyToManyField(Group, related_name='usuario_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='usuario_permissions', blank=True)
 
     def __str__(self):
         return f"{self.username} - {self.email} - {self.first_name} {self.last_name} - {self.nome} - {self.telefone}"
 
+    class Meta:
+        db_table = 'app_usuario'  # Optional: If you want to use a custom table name
+
     
     def __str__(self):
         return f"{self.username} - {self.email} - {self.first_name} {self.last_name} - {self.nome} - {self.telefone}"
+
+
+
+class Cliente(models.Model):    
+    cpf = models.CharField(max_length=11, unique=True, blank=True)
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='cliente')    
+
+
+class Vendedor(models.Model):    
+    cpf = models.CharField(max_length=11, unique=True, blank=True)
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE, blank=True, null=True, related_name='vendedor')  
+
 
 class Endereco(models.Model):
     rua = models.CharField(max_length=100)
@@ -35,7 +49,7 @@ class Endereco(models.Model):
         return self.rua
     
 class Pedido(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pedidos_cliente')  
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='pedidos_cliente')  
     endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE)
     itens = models.ManyToManyField('Item')
     vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'perfil': 'vendedor'}, related_name='pedidos_vendedor')

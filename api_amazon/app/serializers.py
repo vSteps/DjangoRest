@@ -4,15 +4,52 @@ from django.contrib.auth.models import User #type: ignore
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Usuario
         fields = ['username', 'email', 'perfil', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        usuario = usuario.objects.create_usuario(**validated_data)
+        return usuario
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = ['cpf', 'usuario']           
+        extra_kwargs = {'password': {'write_only': True}}
+
+    usuario = UsuarioSerializer()
+    
+
+    def create(self, validated_data):
+        usuario_data = validated_data.pop('usuario')
+        usuario_serializer = UsuarioSerializer(data=usuario_data)      
+        usuario_serializer.is_valid(raise_exception=True)
+
+        usuario = usuario_serializer.save()
+
+        cliente = Cliente.objects.create(usuario=usuario, **validated_data)
+        return cliente
 
 
+class VendedorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendedor
+        fields = ['cpf', 'usuario']           
+        extra_kwargs = {'password': {'write_only': True}}
+
+    usuario = UsuarioSerializer()
+    
+
+    def create(self, validated_data):
+        usuario_data = validated_data.pop('usuario')
+        usuario_serializer = UsuarioSerializer(data=usuario_data)      
+        usuario_serializer.is_valid(raise_exception=True)
+
+        usuario = usuario_serializer.save()
+
+        vendedor = Vendedor.objects.create(usuario=usuario, **validated_data)
+        return vendedor
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endereco
